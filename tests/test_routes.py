@@ -24,6 +24,8 @@ HTTPS_ENVIRON = {'wsgi.url_scheme': 'https'}
 ######################################################################
 #  T E S T   C A S E S
 ######################################################################
+
+
 class TestAccountService(TestCase):
     """Account Service Tests"""
 
@@ -144,7 +146,7 @@ class TestAccountService(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.get_json()["name"], created_account_name)
-        
+
         '''
         # use model to create an account (from solution)
         account = self._create_accounts(1)[0]
@@ -163,7 +165,7 @@ class TestAccountService(TestCase):
             f"{BASE_URL}/{created_account_id}", content_type="application/json"
         )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    
+
     def test_get_account_list(self):
         """It should Get a list of Accounts(by cp)"""
         self._create_accounts(5)
@@ -171,7 +173,7 @@ class TestAccountService(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
         self.assertEqual(len(data), 5)
-    
+
     def test_update_account(self):
         """It should Update an existing Account(by cp)"""
         # create an Account to update
@@ -215,7 +217,7 @@ class TestAccountService(TestCase):
             'Referrer-Policy': 'strict-origin-when-cross-origin'
         }
         for key, value in headers.items():
-            self.assertEqual(response.headers.get(key), value)    
+            self.assertEqual(response.headers.get(key), value)
 
     def test_cors_security(self):
         """It should return a CORS header(by cp  )"""
